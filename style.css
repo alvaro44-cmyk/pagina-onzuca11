@@ -1,0 +1,90 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+
+.catalogo-header {
+    background-color: #e1d98a;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.catalogo-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.catalogo-header .btn {
+    background-color: #fff;
+    color: #007BFF;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.catalogo-header .btn:hover {
+    background-color: #e6e6e6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.producto {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+    width: calc(33.333% - 2rem);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.producto h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.producto p {
+    margin: 0.5rem 0;
+}
+
+.producto strong {
+    font-size: 1.25rem;
+    color: #007BFF;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer p {
+    margin: 0;
+}
