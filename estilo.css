@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -13,6 +14,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -21,7 +23,7 @@ nav {
 }
 
 nav .logo img {
-    max-width: 100%;
+    max-width: 150px; 
     height: auto;
 }
 
@@ -31,19 +33,39 @@ nav ul {
     gap: 1rem;
 }
 
-nav ul li {
-    margin: 0;
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        padding: 10px 0;
+    }
+
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: #333;
+    }
+
+
+    nav ul.active {
+        display: flex;
+    }
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #b83be5;
-}
 
 .hero {
     background: url('/assets/Imagenes/soap-4829708_1280.jpg') no-repeat center center/cover;
@@ -53,14 +75,13 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
 }
+
 
 .hero .btn {
     background-color: #ff00dd;
@@ -72,7 +93,7 @@ nav ul li a:hover {
 }
 
 .hero .btn:hover {
-    background-color: #0056b3;
+    background-color: #578bc2;
 }
 
 
@@ -87,10 +108,6 @@ nav ul li a:hover {
     margin-bottom: 0.5rem;
 }
 
-.banner p {
-    margin: 0;
-}
-
 
 footer {
     background-color: #333;
@@ -99,9 +116,6 @@ footer {
     padding: 1rem 0;
 }
 
-footer p {
-    margin: 0;
-}
 
 .contact-section {
     display: flex;
@@ -117,18 +131,25 @@ footer p {
     margin-right: 20px;
 }
 
-.contact-info h3 {
-    margin-top: 0;
-}
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1rem;
+    }
 
-.contact-info p {
-    margin: 5px 0;
-}
+    .hero h1 {
+        font-size: 2rem;
+    }
 
-.social-icons {
-    margin-top: 10px;
-}
+    .hero p {
+        font-size: 1rem;
+    }
 
-.social-icons a {
-    margin-right: 10px;
+    .contact-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-info {
+        margin-right: 0;
+    }
 }
