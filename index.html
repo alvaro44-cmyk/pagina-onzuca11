@@ -24,18 +24,26 @@
         </nav>
     </header>
 
-    
     <section class="hero">
         <h1>ONZUCA11</h1>
         <p>Belleza auténtica con ingredientes naturales</p>
         <a href="catalogo.html" class="btn">Descubre más</a>
     </section>
 
-    
     <section class="banner">
         <h2>¿Tienes dudas? Contáctame ; Por Teléfono solo audios de Whatsapp</h2>
         <p>Email: <a href="mailto:Laonzuca11@gmail.com">Laonzuca11@gmail.com</a></p>
         <p>Numero: <a href="mailto:+34617379016">+34617379016</a></p>
+    </section>
+
+    <!-- Sección de comentarios -->
+    <section class="comentarios">
+        <h2>Deja tu comentario</h2>
+        <textarea id="comentarioInput" placeholder="Escribe tu comentario aquí..."></textarea>
+        <button onclick="guardarComentario()">Enviar</button>
+
+        <h3>Comentarios</h3>
+        <div id="listaComentarios"></div>
     </section>
 
     <footer>
@@ -46,6 +54,33 @@
         function toggleMenu() {
             document.getElementById("nav-menu").classList.toggle("active");
         }
+
+        function guardarComentario() {
+            let comentario = document.getElementById("comentarioInput").value;
+            if (comentario.trim() === "") return;
+
+            let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+            comentarios.push(comentario);
+            localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+            mostrarComentarios();
+            document.getElementById("comentarioInput").value = "";
+        }
+
+        function mostrarComentarios() {
+            let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+            let listaComentarios = document.getElementById("listaComentarios");
+            listaComentarios.innerHTML = "";
+            
+            comentarios.forEach((coment, index) => {
+                let p = document.createElement("p");
+                p.textContent = coment;
+                listaComentarios.appendChild(p);
+            });
+        }
+
+        // Mostrar comentarios al cargar la página
+        window.onload = mostrarComentarios;
     </script>
 
 </body>
