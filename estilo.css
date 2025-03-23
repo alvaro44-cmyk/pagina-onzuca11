@@ -96,7 +96,6 @@ nav ul {
     background-color: #578bc2;
 }
 
-
 .banner {
     background-color: #dd76aa;
     color: #fff;
@@ -108,7 +107,7 @@ nav ul {
     margin-bottom: 0.5rem;
 }
 
-
+/* Sección de comentarios */
 .comentarios {
     margin: 2rem auto;
     padding: 20px;
@@ -124,9 +123,8 @@ nav ul {
     color: #007BFF;
 }
 
-textarea {
+input, textarea {
     width: 100%;
-    height: 80px;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -162,7 +160,7 @@ button:hover {
     border-left: 5px solid #007BFF;
 }
 
-
+/* Sección de contacto */
 .contact-section {
     display: flex;
     flex-wrap: wrap;
@@ -177,7 +175,7 @@ button:hover {
     margin-right: 20px;
 }
 
-
+/* Pie de página */
 footer {
     background-color: #333;
     color: #fff;

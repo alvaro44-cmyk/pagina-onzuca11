@@ -39,49 +39,31 @@
     
     <section class="comentarios">
         <h2>Deja tu comentario</h2>
-        <textarea id="comentarioInput" placeholder="Escribe tu comentario aquí..."></textarea>
-        <button onclick="guardarComentario()">Enviar</button>
-
+        <input type="text" id="nombre" placeholder="Tu nombre" required>
+        <textarea id="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+        <button onclick="agregarComentario()">Publicar</button>
         <h3>Comentarios</h3>
         <div id="listaComentarios"></div>
     </section>
-
-    <footer>
-        <p>&copy; 2025 Cosmética Natural - Todos los derechos reservados</p>
-    </footer>
-
+    
     <script>
-        function toggleMenu() {
-            document.getElementById("nav-menu").classList.toggle("active");
-        }
-
-        function guardarComentario() {
-            let comentario = document.getElementById("comentarioInput").value;
-            if (comentario.trim() === "") return;
-
-            let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
-            comentarios.push(comentario);
-            localStorage.setItem("comentarios", JSON.stringify(comentarios));
-
-            mostrarComentarios();
-            document.getElementById("comentarioInput").value = "";
-        }
-
-        function mostrarComentarios() {
-            let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+        function agregarComentario() {
+            let nombre = document.getElementById("nombre").value.trim();
+            let comentario = document.getElementById("comentario").value.trim();
             let listaComentarios = document.getElementById("listaComentarios");
-            listaComentarios.innerHTML = "";
+    
+            if (nombre === "" || comentario === "") {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+    
+            let nuevoComentario = document.createElement("p");
+            nuevoComentario.innerHTML = `<strong>${nombre}:</strong> ${comentario}`;
+            listaComentarios.appendChild(nuevoComentario);
+    
             
-            comentarios.forEach((coment, index) => {
-                let p = document.createElement("p");
-                p.textContent = coment;
-                listaComentarios.appendChild(p);
-            });
+            document.getElementById("nombre").value = "";
+            document.getElementById("comentario").value = "";
         }
-
-        
-        window.onload = mostrarComentarios;
     </script>
-
-</body>
-</html>
+    
