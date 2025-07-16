@@ -137,3 +137,25 @@ footer p {
         padding: 0.6rem 1rem;
     }
 }
+
+/* Botón Agregar al carrito */
+.add-to-cart-btn {
+    background-color: #a3b18a; /* tono verde suave de header */
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    box-shadow: 0 4px 8px rgba(163, 177, 138, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #588157; /* verde más oscuro */
+    box-shadow: 0 6px 12px rgba(88, 129, 87, 0.6);
+}
+

@@ -1,37 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Catálogo - Cosmética Natural</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <header class="catalogo-header">
-        <h1>Regala Natural Cestas y cajas para alguien especial </h1>
-        <a href="catalogo13.html" class="btn">Volver a anterior seccion</a>
+        <h1>Regala Natural Cestas y cajas para alguien especial</h1>
+        <a href="catalogo13.html" class="btn">Volver a anterior sección</a>
         <a href="index.html" class="btn">Volver al inicio</a>
-        <a href="catalogo15.html" class="btn">siguiente seccion</a>
+        <a href="catalogo15.html" class="btn">Siguiente sección</a>
     </header>
 
     <div class="container">
         <div class="productos">
-            <div class="producto">
-                <img src="/assets/Photos-1-001/IMG-20250417-WA0017.jpg" alt="Crema hidratante">
+            <div class="producto" data-id="1" data-nombre="Variado" data-precio="20.00">
+                <img src="/assets/Photos-1-001/IMG-20250417-WA0017.jpg" alt="Variado" />
                 <h3>Variado</h3>
                 <p>Diferentes productos para alguien especial</p>
-                <p><strong>Varios modelos: Precios desde:20€</strong></p>
+                <p><strong>Varios modelos: Precios desde: 20€</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
             </div>
         </div>
     </div>
 
+    <div id="carrito-container" style="max-width:700px; margin: 2rem auto; border: 1px solid #ccc; padding: 1rem; border-radius: 10px; background: #fafafa;">
+        <h2>Carrito</h2>
+        <ul id="carrito-lista" style="list-style:none; padding-left:0;"></ul>
+        <p id="carrito-total" style="font-weight:bold; text-align:right;">Total: €0.00</p>
+        <button id="vaciar-carrito" style="width:100%; padding: 10px; background:#3a5a40; color:#fff; border:none; border-radius:6px; cursor:pointer;">Vaciar carrito</button>
+    </div>
 
-    
     <footer>
         <p>&copy; 2025 Cosmética Natural - Todos los derechos reservados</p>
     </footer>
+
+    <script>
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function actualizarCarritoUI() {
+            const lista = document.getElementById('carrito-lista');
+            lista.innerHTML = '';
+
+            carrito.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.justifyContent = 'space-between';
+                li.style.alignItems = 'center';
+                li.style.backgroundColor = '#fff';
+                li.style.marginBottom = '8px';
+                li.style.padding = '8px 12px';
+                li.style.borderRadius = '6px';
+                li.style.borderLeft = '5px solid #a5a58d';
+
+                li.textContent = `${item.nombre} - €${item.precio.toFixed(2)} x ${item.cantidad}`;
+
+                const btnEliminar = document.createElement('button');
+                btnEliminar.textContent = 'Eliminar';
+                btnEliminar.style.backgroundColor = '#e76f51';
+                btnEliminar.style.border = 'none';
+                btnEliminar.style.color = 'white';
+                btnEliminar.style.borderRadius = '5px';
+                btnEliminar.style.cursor = 'pointer';
+                btnEliminar.style.padding = '5px 10px';
+                btnEliminar.onclick = () => {
+                    eliminarDelCarrito(index);
+                };
+
+                li.appendChild(btnEliminar);
+                lista.appendChild(li);
+            });
+
+            const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+            document.getElementById('carrito-total').textContent = `Total: €${total.toFixed(2)}`;
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        function agregarAlCarrito(id, nombre, precio) {
+            const index = carrito.findIndex(item => item.id === id);
+            if (index > -1) {
+                carrito[index].cantidad += 1;
+            } else {
+                carrito.push({ id, nombre, precio, cantidad: 1 });
+            }
+            actualizarCarritoUI();
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarCarritoUI();
+        }
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', e => {
+                const producto = e.target.closest('.producto');
+                const id = Number(producto.getAttribute('data-id'));
+                const nombre = producto.getAttribute('data-nombre');
+                const precio = Number(producto.getAttribute('data-precio'));
+                agregarAlCarrito(id, nombre, precio);
+            });
+        });
+
+        document.getElementById('vaciar-carrito').addEventListener('click', () => {
+            carrito.length = 0;
+            actualizarCarritoUI();
+        });
+
+        document.addEventListener('DOMContentLoaded', actualizarCarritoUI);
+    </script>
 
 </body>
 </html>

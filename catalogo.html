@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Catálogo - Cosmética Natural</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="whas.js" defer></script>
 </head>
 <body>
 
     <header class="catalogo-header">
         <h1> Productos Manteca corporal</h1>
         <a href="index.html" class="btn">Volver al inicio</a>
-        <a href="catalogo2.html" class="btn">siguiente seccion</a>
+        <a href="catalogo2.html" class="btn">Siguiente sección</a>
     </header>
 
     <div class="container">
         <div class="productos">
-            <div class="producto">
-                <img src="/assets/Photos-1-001/IMG-20250417-WA0000.jpg" alt="Crema hidratante">
+            <div class="producto" data-id="1" data-nombre="E.Body RegenTotal" data-precio="5.50">
+                <img src="/assets/Photos-1-001/IMG-20250417-WA0000.jpg" alt="Crema hidratante" />
                 <h3>E.Body RegenTotal</h3>
-                <p>Regenera tu piel, cicatrices,poca vitalidad en tu piel, con esta manteca corporal, la mejor para todo el cuerpo y luce piel de lujo, con ingredientes BIO, manteca Karite,Calendula Bio y vitaminas.</p>
+                <p>Regenera tu piel, cicatrices, poca vitalidad en tu piel, con esta manteca corporal, la mejor para todo el cuerpo y luce piel de lujo, con ingredientes BIO, manteca Karite, Calendula Bio y vitaminas.</p>
                 <p><strong>Desde 5'50€</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
             </div>
-            <div class="producto">
-                <img src="/assets/Photos-1-001/IMG-20250417-WA0001.jpg" alt="Serum facial">
+            <div class="producto" data-id="2" data-nombre="Crema nutritiva E.C.NutriCalen" data-precio="5.00">
+                <img src="/assets/Photos-1-001/IMG-20250417-WA0001.jpg" alt="Serum facial" />
                 <h3>Crema nutritiva E.C.NutriCalen</h3>
-                <p>Piel seca, sin vida?? Esta es tu crema, pieles maduras en especial,esa sequedad la puedes cambiar, crema natural 100% Manteca de Karite,A.Caléndula, Ylang Ylang , Vitamina E, harán todo por dar nutrición a tu piel y regenerarla.</p>
+                <p>Piel seca, sin vida?? Esta es tu crema, pieles maduras en especial, esa sequedad la puedes cambiar, crema natural 100% Manteca de Karite, A.Caléndula, Ylang Ylang, Vitamina E, harán todo por dar nutrición a tu piel y regenerarla.</p>
                 <p><strong>Desde 5€</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Cosmética Natural - Todos los derechos reservados</p>
-    </footer>
+    <div id="carrito-container" style="max-width:700px; margin: 2rem auto; border: 1px solid #ccc; padding: 1rem; border-radius: 10px; background: #fafafa;">
+        <h2>Carrito</h2>
+        <ul id="carrito-lista" style="list-style:none; padding-left:0;"></ul>
+        <p id="carrito-total" style="font-weight:bold; text-align:right;">Total: €0.00</p>
+        <button id="vaciar-carrito" style="width:100%; padding: 10px; background:#3a5a40; color:#fff; border:none; border-radius:6px; cursor:pointer;">Vaciar carrito</button>
+        <button id="enviar-whatsapp" style="width:100%; margin-top: 10px; padding: 10px; background:#25D366; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+            Enviar cesta por WhatsApp
+        </button>
+    </div>
 
 </body>
 </html>
+

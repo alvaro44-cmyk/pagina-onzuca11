@@ -1,59 +1,136 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Catálogo - Cosmética Natural</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <header class="catalogo-header">
-        <h1>Ungüentos </h1>
-        <a href="catalogo14.html" class="btn">Volver a anterior seccion</a>
-        <a href="catalogo16.html" class="btn">siguiente seccion</a>
+        <h1>Ungüentos</h1>
+        <a href="catalogo14.html" class="btn">Volver a anterior sección</a>
+        <a href="catalogo16.html" class="btn">Siguiente sección</a>
         <a href="index.html" class="btn">Volver al inicio</a>
     </header>
 
     <div class="container">
         <div class="productos">
-            <div class="producto">
-                <img src="/assets/Photos-1-001/IMG-20250417-WA0016.jpg" alt="Crema hidratante">
+
+            <div class="producto" data-id="1" data-nombre="Oil Rosa Mosqueta Natural" data-precio="4.00">
+                <img src="/assets/Photos-1-001/IMG-20250417-WA0016.jpg" alt="Oil Rosa Mosqueta Natural" />
                 <h3>Oil Rosa Mosqueta Natural</h3>
-                <p>Indicado para cicatrices y pieles delicadas,naturaleza en estado puro.</p>
+                <p>Indicado para cicatrices y pieles delicadas, naturaleza en estado puro.</p>
                 <p><strong>desde 4€</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
             </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="productos">
-            <div class="producto">
-                <img src="/assets/Photos-1-001/sol.jpg" alt="Crema hidratante">
+            <div class="producto" data-id="2" data-nombre="Ungüento natural para después del sol" data-precio="8.00">
+                <img src="/assets/Photos-1-001/sol.jpg" alt="Ungüento natural para después del sol" />
                 <h3>Ungüento natural para después del sol</h3>
-                <p>Calma y regenera la piel,con manteca de Karite,caléndula,lavanda</p>
+                <p>Calma y regenera la piel, con manteca de Karite, caléndula, lavanda</p>
                 <p><strong>desde 8€ 30ml</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
             </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="productos">
-            <div class="producto">
-                <img src="/assets/Photos-1-001/antimosquitos.jpg" alt="Crema hidratante">
+            <div class="producto" data-id="3" data-nombre="Antimosquitos natural" data-precio="6.50">
+                <img src="/assets/Photos-1-001/antimosquitos.jpg" alt="Antimosquitos natural" />
                 <h3>Antimosquitos natural</h3>
-                <p>Aceite esencial de menta,glicerina vegetal,aceite esencial de limón,alcohol y Vitamina E</p>
+                <p>Aceite esencial de menta, glicerina vegetal, aceite esencial de limón, alcohol y Vitamina E</p>
                 <p><strong>desde 6'50€</strong></p>
+                <button class="add-to-cart-btn">Agregar al carrito</button>
             </div>
+
         </div>
     </div>
 
+    <div id="carrito-container" style="max-width:700px; margin: 2rem auto; border: 1px solid #ccc; padding: 1rem; border-radius: 10px; background: #fafafa;">
+        <h2>Carrito</h2>
+        <ul id="carrito-lista" style="list-style:none; padding-left:0;"></ul>
+        <p id="carrito-total" style="font-weight:bold; text-align:right;">Total: €0.00</p>
+        <button id="vaciar-carrito" style="width:100%; padding: 10px; background:#3a5a40; color:#fff; border:none; border-radius:6px; cursor:pointer;">Vaciar carrito</button>
+    </div>
 
-    
     <footer>
         <p>&copy; 2025 Cosmética Natural - Todos los derechos reservados</p>
     </footer>
 
+<script>
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    function actualizarCarritoUI() {
+        const lista = document.getElementById('carrito-lista');
+        lista.innerHTML = '';
+
+        carrito.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.justifyContent = 'space-between';
+            li.style.alignItems = 'center';
+            li.style.backgroundColor = '#fff';
+            li.style.marginBottom = '8px';
+            li.style.padding = '8px 12px';
+            li.style.borderRadius = '6px';
+            li.style.borderLeft = '5px solid #a5a58d';
+
+            li.textContent = `${item.nombre} - €${item.precio.toFixed(2)} x ${item.cantidad}`;
+
+            const btnEliminar = document.createElement('button');
+            btnEliminar.textContent = 'Eliminar';
+            btnEliminar.style.backgroundColor = '#e76f51';
+            btnEliminar.style.border = 'none';
+            btnEliminar.style.color = 'white';
+            btnEliminar.style.borderRadius = '5px';
+            btnEliminar.style.cursor = 'pointer';
+            btnEliminar.style.padding = '5px 10px';
+            btnEliminar.onclick = () => {
+                eliminarDelCarrito(index);
+            };
+
+            li.appendChild(btnEliminar);
+            lista.appendChild(li);
+        });
+
+        const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+        document.getElementById('carrito-total').textContent = `Total: €${total.toFixed(2)}`;
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    function agregarAlCarrito(id, nombre, precio) {
+        const index = carrito.findIndex(item => item.id === id);
+        if (index > -1) {
+            carrito[index].cantidad += 1;
+        } else {
+            carrito.push({ id, nombre, precio, cantidad: 1 });
+        }
+        actualizarCarritoUI();
+    }
+
+    function eliminarDelCarrito(index) {
+        carrito.splice(index, 1);
+        actualizarCarritoUI();
+    }
+
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', e => {
+            const producto = e.target.closest('.producto');
+            const id = Number(producto.getAttribute('data-id'));
+            const nombre = producto.getAttribute('data-nombre');
+            const precio = Number(producto.getAttribute('data-precio'));
+            agregarAlCarrito(id, nombre, precio);
+        });
+    });
+
+    document.getElementById('vaciar-carrito').addEventListener('click', () => {
+        carrito.length = 0;
+        actualizarCarritoUI();
+    });
+
+    document.addEventListener('DOMContentLoaded', actualizarCarritoUI);
+</script>
+
 </body>
 </html>
+

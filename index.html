@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmética Natural</title>
     <link rel="stylesheet" href="estilo.css">
+    <script src="carrito.js"></script>
 </head>
 <body>
 
@@ -36,21 +37,6 @@
         <p>Teléfono: <a href="mailto:+34617379016">+34617379016</a></p>
     </section>
 
-    <!-- 🛍 Productos -->
-    <section class="productos">
-        <h2>Productos Destacados</h2>
-        <div class="producto">
-            <h3>E. Onzu SuaVen (PIELES DELICADAS)</h3>
-            <p>Precio: 4€</p>
-            <button onclick="agregarAlCarrito('E. Onzu SuaVen (PIELES DELICADAS)', 4)">Agregar al carrito</button>
-        </div>
-        <div class="producto">
-            <h3>Lip gloss Pocket</h3>
-            <p>Precio: €4</p>
-            <button onclick="agregarAlCarrito('Lip gloss Pocket', 4)">Agregar al carrito</button>
-        </div>
-    </section>
-
     <!-- 🛒 Carrito -->
     <div id="carrito-container">
         <h2>Carrito</h2>
@@ -69,97 +55,5 @@
         <h3>Comentarios</h3>
         <div id="listaComentarios"></div>
     </section>
-
-    <!-- 🔧 Scripts -->
-    <script>
-        // Menú responsive (por si tenés toggleMenu en estilo.css)
-        function toggleMenu() {
-            const menu = document.getElementById("nav-menu");
-            menu.classList.toggle("show");
-        }
-
-        // Comentarios
-        function agregarComentario() {
-            let nombre = document.getElementById("nombre").value.trim();
-            let comentario = document.getElementById("comentario").value.trim();
-            let listaComentarios = document.getElementById("listaComentarios");
-
-            if (nombre === "" || comentario === "") {
-                alert("Por favor, completa todos los campos.");
-                return;
-            }
-
-            let nuevoComentario = document.createElement("p");
-            nuevoComentario.innerHTML = `<strong>${nombre}:</strong> ${comentario}`;
-            listaComentarios.appendChild(nuevoComentario);
-
-            document.getElementById("nombre").value = "";
-            document.getElementById("comentario").value = "";
-        }
-
-        // Carrito
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-        function agregarAlCarrito(nombre, precio) {
-            carrito.push({ nombre, precio });
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            mostrarCarrito();
-        }
-
-        function mostrarCarrito() {
-            const lista = document.getElementById("carrito-lista");
-            const total = document.getElementById("carrito-total");
-            lista.innerHTML = "";
-            let totalCompra = 0;
-
-            carrito.forEach((item, index) => {
-                let li = document.createElement("li");
-                li.innerHTML = `${item.nombre} - €${item.precio} 
-                    <button onclick="eliminarDelCarrito(${index})">Eliminar</button>`;
-                lista.appendChild(li);
-                totalCompra += item.precio;
-            });
-
-            total.textContent = totalCompra.toFixed(2);
-        }
-
-        function eliminarDelCarrito(index) {
-            carrito.splice(index, 1);
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-            mostrarCarrito();
-        }
-
-        function vaciarCarrito() {
-            carrito = [];
-            localStorage.removeItem("carrito");
-            mostrarCarrito();
-        }
-
-        // Función para enviar el carrito por WhatsApp
-        function enviarPorWhatsApp() {
-            if (carrito.length === 0) {
-                alert("El carrito está vacío.");
-                return;
-            }
-
-            let mensaje = "Hola, quiero comprar:\n\n";
-            let total = 0;
-
-            carrito.forEach(producto => {
-                mensaje += `- ${producto.nombre} (€${producto.precio})\n`;
-                total += producto.precio;
-            });
-
-            mensaje += `\nTotal: €${total.toFixed(2)}\n\nGracias por tu atención!`;
-
-            let numeroWhatsApp = "617379016"; // Tu número de WhatsApp con prefijo internacional
-            let url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, "_blank");
-        }
-
-        // Mostrar carrito al cargar la página
-        document.addEventListener("DOMContentLoaded", mostrarCarrito);
-    </script>
-    
 </body>
 </html>
