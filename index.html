@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmética Natural</title>
-    <link rel="stylesheet" href="estilo.css">
-    <script src="carrito.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmética Natural</title>
+  <link rel="stylesheet" href="estilo.css" />
+  <script src="carrito.js" defer></script>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="/assets/Imagenes/bf46baee-fb0a-441d-bdf0-e8978ba011c7-removebg-preview.png" width="100" height="100" alt="Lofticore Logo">
-            </div>
+  <!-- 🔝 Menú Flotante -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="/assets/Imagenes/bf46baee-fb0a-441d-bdf0-e8978ba011c7-removebg-preview.png" alt="Logo" />
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-menu">
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <!-- 🎯 Hero Section -->
+  <section class="hero">
+    <h1>ONZUCA11</h1>
+    <p>Belleza auténtica con ingredientes naturales</p>
+    <a href="catalogo.html" class="btn">Descubre más</a>
+  </section>
 
-            <ul id="nav-menu">
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Sobre Nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- 📞 Contacto -->
+  <section class="banner">
+    <h2>¿Tienes dudas? Contáctame</h2>
+    <p>Email: <a href="mailto:Laonzuca11@gmail.com">Laonzuca11@gmail.com</a></p>
+  </section>
 
-    <section class="hero">
-        <h1>ONZUCA11</h1>
-        <p>Belleza auténtica con ingredientes naturales</p>
-        <a href="catalogo.html" class="btn">Descubre más</a>
-    </section>
+  <!-- 💬 Comentarios -->
+  <section class="comentarios">
+    <h2>Deja tu comentario</h2>
+    <input type="text" id="nombre" placeholder="Tu nombre" required />
+    <textarea id="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+    <button onclick="agregarComentario()">Publicar</button>
+    <h3>Comentarios</h3>
+    <div id="listaComentarios"></div>
+  </section>
 
-    <section class="banner">
-        <h2>¿Tienes dudas? Contáctame; Por Teléfono solo audios de Whatsapp</h2>
-        <p>Email: <a href="mailto:Laonzuca11@gmail.com">Laonzuca11@gmail.com</a></p>
-        <p>Teléfono: <a href="mailto:+34617379016">+34617379016</a></p>
-    </section>
-    <!-- 💬 Comentarios -->
-    <section class="comentarios">
-        <h2>Deja tu comentario</h2>
-        <input type="text" id="nombre" placeholder="Tu nombre" required>
-        <textarea id="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
-        <button onclick="agregarComentario()">Publicar</button>
-        <h3>Comentarios</h3>
-        <div id="listaComentarios"></div>
-    </section>
+  <!-- 💬 Botón Flotante WhatsApp -->
+  <a href="https://wa.me/34617379016" class="whatsapp-float" target="_blank" aria-label="Enviar mensaje por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+  </a>
+
+  <!-- 📜 Script menú -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('active');
+    }
+  </script>
+
 </body>
 </html>
