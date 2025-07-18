@@ -346,4 +346,45 @@ footer {
 }
 
 
+/* Banner Síguenos */
+.social-banner {
+  background: linear-gradient(135deg, #f1e3d3, #e7c6a5);
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #3a5a40;
+  border-top: 2px solid #b08968;
+}
+
+.social-banner h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-banner p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.instagram-link {
+  display: inline-block;
+  color: #fff;
+  background: #d6336c;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.instagram-link i {
+  margin-right: 8px;
+}
+
+.instagram-link:hover {
+  background: #ad2e5d;
+}
+
+
+
 
