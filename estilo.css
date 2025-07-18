@@ -385,6 +385,27 @@ footer {
   background: #ad2e5d;
 }
 
+/* Botón flotante de correo */
+.floating-email {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background-color: #c97b63;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.floating-email:hover {
+  background-color: #9c6644;
+}
+
+
 
 
 
